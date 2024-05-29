@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "github.com/subhankardas/go-grpc/proto";
+
+service UserService {
+  rpc GetUser (UserIdRequest) returns (UserResponse);
+  rpc GetUsers (UserIdsRequest) returns (UsersResponse);
+  rpc SearchUsers (SearchRequest) returns (UsersResponse);
+}
+
+message User {
+  int32 id = 1;
+  string fname = 2;
+  string city = 3;
+  int64 phone = 4;
+  float height = 5;
+  bool married = 6;
+}
+
+message UserIdRequest {
+  int32 id = 1;
+}
+
+message UserIdsRequest {
+  repeated int32 ids = 1;
+}
+
+message SearchRequest {
+  string city = 1;
+  int64 phone = 2;
+  bool married = 3;
+}
+
+message UserResponse {
+  User user = 1;
+}
+
+message UsersResponse {
+  repeated User users = 1;
+}
